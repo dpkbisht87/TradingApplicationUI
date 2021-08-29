@@ -21,7 +21,7 @@ export class RestApiService {
     })
   }
 
-  // HttpClient API get() method => Fetch employees list
+  // HttpClient API get() method => Fetch Stock list
   getStocks(): Observable<Stock> {
     return this.http.get<Stock>(this.apiURL + '/stocks')
       .pipe(

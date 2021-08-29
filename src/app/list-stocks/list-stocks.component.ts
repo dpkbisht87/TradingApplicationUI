@@ -18,7 +18,7 @@ export class ListStocksComponent implements OnInit {
     this.loadStocks()
   }
 
-  // Get employees list
+  // Get Stock list
   loadStocks() {
     return this.restApi.getStocks().subscribe((data: {}) => {
       this.Stock = data;
@@ -31,7 +31,7 @@ export class ListStocksComponent implements OnInit {
     })
   }
 
-  // Delete employee
+  // Delete stock
   deleteStock(id:string) {
     if (window.confirm('Are you sure, you want to delete?')) {
       this.restApi.deleteStock(id).subscribe(data => {
