@@ -5,7 +5,7 @@ import { ListStocksComponent } from './list-stocks/list-stocks.component';
 import { UpdateStockComponent } from './update-stock/update-stock.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'create-employee' },
+  { path: '', pathMatch: 'full', redirectTo: 'create-stock' },
   { path: 'create-stock', component: CreateStockComponent },
   { path: 'list-stock', component: ListStocksComponent },
   { path: 'update-stock/:id', component: UpdateStockComponent }
