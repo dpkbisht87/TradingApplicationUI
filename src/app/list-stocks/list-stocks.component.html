@@ -1,0 +1,52 @@
+<div class="container custom-container-2">
+
+    <!-- Show it when there is no stock -->
+    <div class="no-data text-center" *ngIf="Stock.length == 0">
+        <p>There is no stock added yet!</p>
+        <button class="btn btn-outline-primary" routerLink="/create-stock">Add Stock</button>
+    </div>
+
+    <!-- Stock list table, it hides when there is no stock -->
+    <div *ngIf="Stock.length !== 0">
+        <h3 class="mb-3 text-center">Stock List</h3>
+
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th scope="col" style="text-align: center;">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Current Price</th>
+                        <th scope="col">Last Update</th>
+                        <th scope="col">Locked</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stock of Stock" style="text-align: center">
+                        <td>{{ stock.id }}</td>
+                        <td>{{ stock.name }}</td>
+                        <td>{{ stock.currentPrice }}</td>
+                        <td *ngIf="stock.lastUpdate">{{ stock.lastUpdate | date: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td *ngIf="!stock.lastUpdate">Not yet updated</td>
+                        <td>{{stock.locked ? 'Locked': 'Open'}}</td>
+                        <td >
+                            <div class="row" style="text-align: right;">
+                                <div class="col-md-4">
+                                <button type="button" class="btn btn-light btn-outline-secondary btn-sm" [hidden]="stock.locked">
+                                    <a routerLink="/update-stock/{{stock.id}}" class="nav-link">Update</a>
+                                </button>
+                                </div>
+                                <div class="col-md-4">
+                                <button type="button" class="btn btn-danger btn-sm" [hidden]="stock.locked">
+                                    <a routerLink="/update-stock/{{stock.id}}" class="nav-link"(click)="deleteStock(stock.id)">Delete</a>
+                                </button>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

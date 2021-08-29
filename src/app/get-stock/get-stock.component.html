@@ -1,0 +1,52 @@
+<div class="container custom-container">
+    <div class="col-md-12">
+
+        <h3 class="mb-3 text-center">Get Stock Details</h3>
+
+        <div class="form-group">
+            <input type="text" [(ngModel)]="stockData.id" class="form-control" placeholder="Id">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success btn-lg btn-block" (click)="getStock()">Get Stock</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="container custom-container-2" *ngIf="isStockReceived">
+
+    <!-- Show it when there is no stock -->
+    <div class="no-data text-center" *ngIf="!stockData">
+        <p>Stock with the given id not found.</p>
+        <button class="btn btn-outline-primary" routerLink="/create-stock">Add Stock</button>
+    </div>
+
+    <!-- Stock list table, it hides when there is no stock -->
+    <div *ngIf="stockData">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th scope="col" style="text-align: center;">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Current Price</th>
+                        <th scope="col">Last Update</th>
+                        <th scope="col">Locked</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="text-align: center">
+                        <td>{{ stockData.id }}</td>
+                        <td>{{ stockData.name }}</td>
+                        <td>{{ stockData.currentPrice }}</td>
+                        <td *ngIf="stockData.lastUpdate">{{ stockData.lastUpdate | date: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td *ngIf="!stockData.lastUpdate">Not yet updated</td>
+                        <td>{{stockData.locked ? 'Locked': 'Open'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
