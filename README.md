@@ -29,5 +29,6 @@ Run the application locally by running the following command
 ```
 ng serve --open
 ```
+During first startup it takes time.
 It will start on port 4200 and can be accessed at
 http://localhost:4200/
